@@ -4,4 +4,6 @@ public interface gerstionTransaction {
 
     /*Payer la reservation*/
     public void payerLaReservation();
+
+
 }

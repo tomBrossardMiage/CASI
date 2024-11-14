@@ -4,9 +4,9 @@ public interface signInsignOut {
 
     /*
     * créer un compte dans l'application*/
-    public void creerCompte(String pseudo, String mdp);
+    public void creerCompte();
 
     /*
     * se connecter à l'application*/
-    public void seConnecter(String pseudo, String mdp);
+    public void seConnecter();
 }
