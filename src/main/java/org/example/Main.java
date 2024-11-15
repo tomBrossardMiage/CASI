@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         SignInSignOutImpl logUser = new SignInSignOutImpl();
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = UtilitaireScanner.getScanner();
 
         while (true) {
             System.out.println("=== Bienvenue sur l'application ===");

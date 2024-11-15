@@ -1,5 +1,6 @@
 package org.example.Impl;
 
+import org.example.UtilitaireScanner;
 import org.example.logement;
 import org.example.utilisateur;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class LogementImpl implements logement {
     private static int compteur = 1;
     private static HashMap<Integer, ArrayList<String>> listeLogement = new HashMap<>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = UtilitaireScanner.getScanner();
     private ArrayList<String> logement = new ArrayList<>();
 
     public LogementImpl(String nom, String localisation, String pseudo){
