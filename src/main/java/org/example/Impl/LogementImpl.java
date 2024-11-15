@@ -29,8 +29,26 @@ public class LogementImpl implements logement {
         for (Map.Entry<Integer, ArrayList<String>> entry : listeLogement.entrySet()){
             System.out.println("Logement n°"+entry.getKey()+" - Nom : "+entry.getValue().get(1));
         }
-        System.out.println("Pour afficher les détailles d'un logement, entrer le numéro de ce dernier.");
-        int choix = scanner.nextInt();
+        System.out.println("Pour afficher les détails d'un logement, entrer le numéro de ce dernier.\nTaper 'retour' pour revenir au menu");
+        while (true) {
+            String choix = scanner.nextLine();
+            if (choix.equals("retour")) {
+                Menu.afficherChoixDeNavigation();
+                break;
+            } else {
+                try {
+                    int numeroLogement = Integer.parseInt(choix);
+
+                    if (listeLogement.containsKey(numeroLogement)) {
+                        System.out.println("Détails du logement n°" + numeroLogement + " : " + listeLogement.get(numeroLogement));
+                    } else {
+                        System.out.println("Numéro de logement non trouvé.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrée invalide. Entrez un numéro de logement ou 'retour' pour revenir au menu.");
+                }
+            }
+        }
     }
 
     @Override
