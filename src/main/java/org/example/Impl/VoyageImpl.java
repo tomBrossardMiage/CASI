@@ -22,7 +22,7 @@ public class VoyageImpl implements Voyage {
         compteur +=1;
     }
 
-    public static void afficherLogements() {
+    public static void afficherVoyages() {
         System.out.println("== Liste des logements ==\n");
 
         for (Map.Entry<Integer, ArrayList<String>> entry : listeVoyage.entrySet()){

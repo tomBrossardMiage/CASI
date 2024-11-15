@@ -19,6 +19,12 @@ public class Menu {
             if (choix.equals("1")) {
                 LogementImpl.afficherLogements();
             } else if (choix.equals("2")) {
+                VoyageImpl.afficherVoyages();
+            } else if (choix.equals("3")) {
+                break;
+            } else if (choix.equals("4")) {
+                break;
+            } else if (choix.equals("5")) {
                 break;
             } else if (choix.equals("exit")) {
                 System.out.println("Merci d'avoir utilisé l'application. Au revoir!");
