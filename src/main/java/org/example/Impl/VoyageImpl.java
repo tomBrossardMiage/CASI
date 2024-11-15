@@ -51,7 +51,7 @@ public class VoyageImpl implements Voyage {
         }
     }
 
-    public void afficherMesVoyages(utilisateur u) {
+    public void afficherMesVoyages() {
 
     }
 }
