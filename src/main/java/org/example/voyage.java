@@ -1,4 +1,9 @@
 package org.example;
 
-public class voyage {
+public interface Voyage {
+
+    /*
+     * Afficher les logements d'une personne
+     */
+    public void afficherMesVoyages(utilisateur u);
 }
