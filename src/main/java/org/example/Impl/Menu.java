@@ -1,13 +1,13 @@
 package org.example.Impl;
 
-import org.example.menu;
+import org.example.UtilitaireScanner;
 
 import java.util.Scanner;
 
-public class Menu implements menu {
-    Scanner scanner = new Scanner(System.in);
-    @Override
-    public void afficherChoixDeNavigation() {
+public class Menu {
+    static Scanner scanner = UtilitaireScanner.getScanner();
+
+    public static void afficherChoixDeNavigation() {
         System.out.println("== MENU ==");
         System.out.println("1 - Logements disponibles");
         System.out.println("2 - Voyages disponibles");
