@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class LogementImpl implements logement {
     private static int compteur = 1;
     private static HashMap<Integer, ArrayList<String>> listeLogement = new HashMap<>();
-    Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private ArrayList<String> logement = new ArrayList<>();
 
     public LogementImpl(String nom, String localisation, String pseudo){
@@ -21,8 +21,8 @@ public class LogementImpl implements logement {
         listeLogement.put(compteur, logement);
         compteur +=1;
     }
-    @Override
-    public void afficherLogements() {
+
+    public static void afficherLogements() {
         System.out.println("== Liste des logements ==\n");
 
         for (Map.Entry<Integer, ArrayList<String>> entry : listeLogement.entrySet()){
