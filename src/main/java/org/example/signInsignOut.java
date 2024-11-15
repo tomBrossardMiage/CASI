@@ -4,9 +4,9 @@ public interface signInsignOut {
 
     /*
     * créer un compte dans l'application*/
-    public void creerCompte();
+    public boolean creerCompte();
 
     /*
     * se connecter à l'application*/
-    public void seConnecter();
+    public boolean seConnecter();
 }

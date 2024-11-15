@@ -11,9 +11,8 @@ public class SignInSignOutImpl implements signInsignOut {
         utilisateur = new HashMap<String, String>();
     }
 
-
     @Override
-    public void creerCompte() {
+    public boolean creerCompte() {
         Scanner scanner = new Scanner(System.in);
         String pseudo;
         do{ //récupérer un pseudo unique
@@ -28,10 +27,12 @@ public class SignInSignOutImpl implements signInsignOut {
         String mdp = scanner.nextLine();
         utilisateur.put(pseudo, mdp);
         System.out.println("Inscription validé, bienvenue sur l'application");
+
+        return true;
     }
 
     @Override
-    public void seConnecter() {
+    public boolean seConnecter() {
         Scanner scanner = new Scanner(System.in);
         String pseudo;
         String mdp;
@@ -50,8 +51,8 @@ public class SignInSignOutImpl implements signInsignOut {
                 System.out.println("mot de passe incorrect, veuillez entrer le bon mot de passe");
             }
         }while(!(Objects.equals(utilisateur.get(pseudo), mdp)));
-        System.out.println("Inscription validé, bienvenue sur l'application");
+        System.out.println("Connexion réussi, bienvenue sur l'application");
 
-
+        return true;
     }
 }
