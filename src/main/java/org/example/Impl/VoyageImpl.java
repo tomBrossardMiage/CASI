@@ -22,7 +22,11 @@ public class VoyageImpl implements Voyage {
         compteur +=1;
     }
 
-    public static void afficherVoyages() {
+    public VoyageImpl(){
+
+    }
+    @Override
+    public void afficherVoyages() {
         System.out.println("== Liste des logements ==\n");
 
         for (Map.Entry<Integer, ArrayList<String>> entry : listeVoyage.entrySet()){
@@ -50,6 +54,7 @@ public class VoyageImpl implements Voyage {
         }
     }
 
+    @Override
     public void afficherMesVoyages() {
 
     }

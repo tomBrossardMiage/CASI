@@ -1,6 +1,12 @@
 package org.example;
 
-public interface gestionreservation {
+public interface GestionReservation {
+
+    /*
+     * Afficher mes reservation
+     */
+    public void mesReservations(String pseudo);
+
     /*Reserver un logement*/
     public void reserverLogement();
 
