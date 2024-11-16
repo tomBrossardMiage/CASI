@@ -2,6 +2,7 @@ package org.example.Impl;
 
 import org.example.UtilitaireScanner;
 
+
 import java.util.Scanner;
 
 public class Menu {
@@ -47,6 +48,7 @@ public class Menu {
                 gestionLogement.ajouterLogement();
                 afficherChoixDeNavigation();
             } else if (choix.equals("5")) {
+                SignInSignOutImpl.seDeconnecter();
                 break;
             } else if (choix.equals("exit")) {
                 System.out.println("Merci d'avoir utilisé l'application. Au revoir!");
