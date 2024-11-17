@@ -1,13 +1,15 @@
 package org.example;
 
-import org.example.Impl.LogementImpl;
-import org.example.Impl.SignInSignOutImpl;
+import org.example.Impl.Menu;
+import org.example.models.Utilisateur;
+import org.example.services.UtilisateurService;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        SignInSignOutImpl logUser = new SignInSignOutImpl();
+        UtilisateurService utilisateurService = new UtilisateurService();
+        Utilisateur utilisateurConnecte;
         Scanner scanner = UtilitaireScanner.getScanner();
 
         while (true) {
@@ -20,14 +22,17 @@ public class Main {
             String choix = scanner.nextLine();
 
             if (choix.equals("1")) {
-                logUser.seConnecter();
+                utilisateurConnecte = utilisateurService.seConnecter();
+                Menu.afficherChoixDeNavigation(utilisateurConnecte);
             } else if (choix.equals("2")) {
-                logUser.creerCompte();
+                utilisateurConnecte = utilisateurService.creerCompte();
+                Menu.afficherChoixDeNavigation(utilisateurConnecte);
             } else if (choix.equals("exit")) {
                 System.out.println("Merci d'avoir utilisé l'application. Au revoir!");
                 break;
             } else {
                 System.out.println("Choix invalide, veuillez réessayer.");
+                break;
             }
         }
 

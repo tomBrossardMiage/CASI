@@ -22,7 +22,7 @@ public class GestionLogementImpl implements GestionLogement {
     }
 
     public void modifierLogement(int prix) {
-        //utilise dans details d'un logement
+
     }
     public void supprimerLogement() {
         //utilise dans details d'un logement

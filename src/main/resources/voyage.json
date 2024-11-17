@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "localisation": "Paris",
+    "pseudo": null
+  },
+  {
+    "id": 2,
+    "localisation": "Toulouse",
+    "pseudo": null
+  },
+  {
+    "id": 3,
+    "localisation": "Lyon",
+    "pseudo": null
+  },
+  {
+    "id": 4,
+    "localisation": "Marseille",
+    "pseudo": null
+  },
+  {
+    "id": 5,
+    "localisation": "Nice",
+    "pseudo": null
+  }
+]
