@@ -31,10 +31,10 @@ public class Menu {
                 String choix2 = scanner.nextLine();
                 if(choix2.equals("1")){
                     System.out.println("Entre ton pseudo");
-                    //afficher logements que l'utilisateur à reservé
+                    logementService.afficherLogementLoue(user);
                 } else if (choix2.equals("2")) {
                     System.out.println("Entre ton pseudo");
-                    //afficher les voyage pour lequels le pseudo est identique à la personne qui à voyagé
+                    //afficher les voyage pour lequels le pseudo est identique à la personne qui possède le voyage
                 }
                 afficherChoixDeNavigation(user);
                 break;

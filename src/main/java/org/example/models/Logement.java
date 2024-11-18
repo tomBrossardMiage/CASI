@@ -1,7 +1,6 @@
 package org.example.models;
 
 public class Logement {
-    private static int compteur = 0;
     private int id;
     private String localisation;
     private int prix;
@@ -11,14 +10,13 @@ public class Logement {
 
 
 
-    public Logement(String localisation, int prix, String type, String proprietaire){
-        this.id = compteur;
+    public Logement(int id, String localisation, int prix, String type, String proprietaire){
+        this.id = id + 1;
         this.localisation = localisation;
         this.prix = prix;
         this.type = type;
         this.proprietaire = proprietaire;
         this.loueur = "empty";
-        this.compteur++;
     }
 
     public String getLocalisation() {
@@ -64,4 +62,5 @@ public class Logement {
     public void setLoueur(String loueur) {
         this.loueur = loueur;
     }
+
 }
