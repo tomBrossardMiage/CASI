@@ -1,13 +1,15 @@
 package org.example.models;
 
 public class Utilisateur {
-    private int id;
+    private static int id = 1;
     private String pseudo;
     private String password;
 
     public Utilisateur(String pseudo, String password) {
+        id = getId();
         this.pseudo = pseudo;
         this.password = password;
+        id++;
     }
 
     // Getters et Setters
@@ -16,7 +18,7 @@ public class Utilisateur {
     }
 
     public void setId(int id) {
-        this.id = id;
+        Utilisateur.id = id;
     }
 
 

@@ -2,8 +2,10 @@ package org.example.services;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.example.Impl.Menu;
 import org.example.UtilitaireScanner;
 import org.example.models.Logement;
+import org.example.models.Utilisateur;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -28,7 +30,7 @@ public class LogementService {
         return List.of(); // Retourne une liste vide en cas d'erreur
     }
 
-    public Logement ajouterLogement(){
+    public Logement ajouterLogement(Utilisateur user){
         Logement nvLogement = null;
         System.out.println("== Ajout d'un nouveau logement ==");
         System.out.println("Entrer la localisation du logement :");
@@ -37,11 +39,7 @@ public class LogementService {
         int prix = Integer.parseInt(scanner.nextLine());
         System.out.println("Entrer le type du logement (maison, appartement):");
         String type = scanner.nextLine();
-        System.out.println("Entrer votre pseudo :");
-        String pseudo = scanner.nextLine();
-        System.out.println("Veuillez entrer votre pseudo : ");
-        pseudo = scanner.nextLine();
-        nvLogement = new Logement(localisation, prix, type, pseudo);
+        nvLogement = new Logement(localisation, prix, type, user.getPseudo());
         List<Logement> logements = lireLogements();
         logements.add(nvLogement);
 
@@ -54,6 +52,50 @@ public class LogementService {
         }
         return nvLogement;
     }
+
+    public void afficherLogement(Utilisateur user){
+        System.out.println("== Liste des logements ==\n");
+        List<Logement> logements = lireLogements();
+
+        for (Logement logement : logements){
+            System.out.println("Logement n°" + logement.getId()+" - Localisation : "+ logement.getLocalisation() +" - Prix : "+ logement.getPrix()+"\n");
+        }
+        System.out.println("Pour afficher les détails d'un logement, entrer le numéro de ce dernier.\nTaper 'retour' pour revenir au menu");
+        while (true) {
+            String choix = scanner.nextLine();
+            if (choix.equals("retour")) {
+                Menu.afficherChoixDeNavigation(user);
+                break;
+            } else {
+                for (Logement logement : logements){
+                    if(logement.getId() == Integer.parseInt(choix)){
+                       AfficherDetailsLogement(user, logement);
+                    }
+                }
+            }
+        }
+    }
+
+    public void AfficherDetailsLogement(Utilisateur user, Logement logement){
+        System.out.println("== Logement numéro "+logement.getId()+ " ==");
+        System.out.println("Logement n°"+logement.getId()+" - Localisation : "+ logement.getLocalisation() +" - Prix : "+ logement.getPrix()+" - Type de logement : "+ logement.getType() +" - Propriétaire : "+ logement.getProprietaire() +" - Loueur : "+ logement.getLoueur() +"\n\n");
+
+        System.out.println("== Actions possibles vis-à-vis du logement ==");
+        if(logement.getLoueur().isEmpty() && !logement.getProprietaire().equals(user.getPseudo())){
+            System.out.println("- Entrer 'loue' pour reserver le logement");
+        }
+        if(logement.getProprietaire().equals(user.getPseudo())){
+            System.out.println("- Entrer 'supprimer' pour supprimer le logement");
+        }
+        String choix = scanner.nextLine();
+        if(choix.equals("loue")&&logement.getLoueur().isEmpty() && !logement.getProprietaire().equals(user.getPseudo())){
+            //louer
+        }
+        if(choix.equals("supprimer")&&logement.getProprietaire().equals(user.getPseudo())){
+            //supp
+        }
+    }
+
 
 
 }

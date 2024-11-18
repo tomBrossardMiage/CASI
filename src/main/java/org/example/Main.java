@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         UtilisateurService utilisateurService = new UtilisateurService();
-        Utilisateur utilisateurConnecte;
+        Utilisateur utilisateurConnecte = null;
         Scanner scanner = UtilitaireScanner.getScanner();
 
-        while (true) {
+        do{
             System.out.println("=== Bienvenue sur l'application ===");
             System.out.println("1. Se connecter");
             System.out.println("2. S'inscrire");
@@ -23,10 +23,8 @@ public class Main {
 
             if (choix.equals("1")) {
                 utilisateurConnecte = utilisateurService.seConnecter();
-                Menu.afficherChoixDeNavigation(utilisateurConnecte);
             } else if (choix.equals("2")) {
                 utilisateurConnecte = utilisateurService.creerCompte();
-                Menu.afficherChoixDeNavigation(utilisateurConnecte);
             } else if (choix.equals("exit")) {
                 System.out.println("Merci d'avoir utilisé l'application. Au revoir!");
                 break;
@@ -34,8 +32,8 @@ public class Main {
                 System.out.println("Choix invalide, veuillez réessayer.");
                 break;
             }
-        }
-
+        }while(utilisateurConnecte == null);
+        Menu.afficherChoixDeNavigation(utilisateurConnecte);
         scanner.close();
     }
 }

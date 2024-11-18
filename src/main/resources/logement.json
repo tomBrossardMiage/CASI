@@ -1,4 +1,1 @@
-[
-  { "id": 1, "localisation": "Toulouse", "prix": 23, "type": "maison", "proprietaire": null, "locataire": null }
-
-]
+[{"id":0,"localisation":"foix","prix":1,"type":"maison","proprietaire":"tom","loueur":"empty"},{"id":1,"localisation":"toulouse","prix":2,"type":"maison","proprietaire":"tom","loueur":"empty"}]

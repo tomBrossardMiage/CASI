@@ -8,11 +8,7 @@ import java.util.Scanner;
 
 public class Menu {
     static Scanner scanner = UtilitaireScanner.getScanner();
-    private static LogementImpl logement = new LogementImpl();
-    private static VoyageImpl voyage = new VoyageImpl();
     private static LogementService logementService = new LogementService();
-
-    private static GestionReservationLogementImpl gestionResLogement = new GestionReservationLogementImpl();
 
     public static void afficherChoixDeNavigation(Utilisateur user) {
         System.out.println("== MENU ==");
@@ -24,10 +20,9 @@ public class Menu {
         String choix = scanner.nextLine();
         while(true){
             if (choix.equals("1")) {
-                logement.afficherLogements();
+                logementService.afficherLogement(user);
             } else if (choix.equals("2")) {
-                voyage.afficherVoyages();
-                break;
+                //afficherVoyages
             } else if (choix.equals("3")) {
                 System.out.println("== Mes reservations ==");
                 System.out.println("Choisir entre 1 ou 2");
@@ -44,7 +39,7 @@ public class Menu {
                 afficherChoixDeNavigation(user);
                 break;
             } else if (choix.equals("4")) {
-                logementService.ajouterLogement();
+                logementService.ajouterLogement(user);
                 afficherChoixDeNavigation(user);
             } else if (choix.equals("5")) {
 
@@ -57,5 +52,4 @@ public class Menu {
             }
         }
     }
-
 }
