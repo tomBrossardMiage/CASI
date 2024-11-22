@@ -73,4 +73,24 @@ public class UtilisateurServiceTest {
         Utilisateur newUtilisateur = utilisateurService.creerCompte(pseudo, mdp);
         assertNull(newUtilisateur);
     }
+
+    @Test
+    public void testCreerCompteAvecPseudoUnique() {
+        String pseudo = "nouveauUtilisateur";
+        String mdp = "motdepasse";
+
+        Utilisateur newUtilisateur = utilisateurService.creerCompte(pseudo, mdp);
+        assertNotNull(newUtilisateur);
+        assertEquals(pseudo, newUtilisateur.getPseudo());
+        assertEquals(mdp, newUtilisateur.getPassword());
+    }
+
+    @Test
+    public void testCreerCompteAvecPseudoOuMotDePasseVide() {
+        assertNull(utilisateurService.creerCompte("", "motdepasse"));
+        assertNull(utilisateurService.creerCompte("pseudoVide", ""));
+        assertNull(utilisateurService.creerCompte("", ""));
+    }
+
+
 }

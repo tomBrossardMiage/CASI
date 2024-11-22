@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UtilisateurService {
@@ -43,6 +44,10 @@ public class UtilisateurService {
                     return null;
                 }
             }
+        }
+        if(Objects.equals(pseudo, "") || Objects.equals(mdp, "")){
+            System.out.println("Pseudo vide ou mdp vide, veuillez re essayer");
+            return null;
         }
         nvUtilisateur = new Utilisateur(pseudo, mdp);
         ajouterUtilisateur(nvUtilisateur);
