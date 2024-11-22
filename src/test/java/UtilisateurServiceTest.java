@@ -18,7 +18,6 @@ public class UtilisateurServiceTest {
 
     private UtilisateurService utilisateurService;
     private Gson gson;
-    private List<Utilisateur> mockUtilisateurs;
     private static Scanner scanner = UtilitaireScanner.getScanner();
     private static final String USERS_FILE_TEST = "src/main/resources/utilisateurTest.json";
 

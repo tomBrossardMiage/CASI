@@ -19,8 +19,8 @@ public class UtilisateurService {
 
     private Gson gson = new Gson();
 
-    public UtilisateurService(String fichierUtilisateur){
-        this.userFile = fichierUtilisateur;
+    public UtilisateurService(String file){
+        this.userFile = file;
     }
     public Utilisateur seConnecter(String pseudo, String mdp) {
         List<Utilisateur> utilisateurs = lireUtilisateurs();

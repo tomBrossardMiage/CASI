@@ -16,14 +16,17 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class LogementService {
-
-    private static final String LOGEMENT_FILE = "src/main/resources/logement.json";
+    private String logementFile;
     private static Scanner scanner = UtilitaireScanner.getScanner();
 
 
     private Gson gson = new Gson();
+
+    public LogementService(String file){
+        this.logementFile = file;
+    }
     public List<Logement> lireLogements() {
-        try (FileReader reader = new FileReader(LOGEMENT_FILE)) {
+        try (FileReader reader = new FileReader(logementFile)) {
             Type LogementListType = new TypeToken<List<Logement>>(){}.getType();
             return gson.fromJson(reader, LogementListType);
         } catch (Exception e) {
@@ -39,7 +42,7 @@ public class LogementService {
         List<Logement> logements = lireLogements();
         logements.add(nvLogement);
 
-        try (FileWriter writer = new FileWriter(LOGEMENT_FILE)) {
+        try (FileWriter writer = new FileWriter(logementFile)) {
             gson.toJson(logements, writer);
             System.out.println("Nouveau logement ajouté avec succès !");
         } catch (IOException e) {
@@ -51,8 +54,8 @@ public class LogementService {
 
     public void supprimerLogement(Logement logement){
         List<Logement> logements = lireLogements();
-        logements.remove(logement);
-        try (FileWriter writer = new FileWriter(LOGEMENT_FILE)) {
+        logements.removeIf(l -> l.getId() == logement.getId());//on cherche via l'id car ce n'est pas le même objet qui est comparé, le .remove classique ne fonctionne pas.
+        try (FileWriter writer = new FileWriter(logementFile)) {
             gson.toJson(logements, writer);
             System.out.println("Logement supprimé avec succès !");
         } catch (IOException e) {
@@ -68,7 +71,7 @@ public class LogementService {
                 logement.setLoueur(user.getPseudo());
             }
         }
-        try (FileWriter writer = new FileWriter(LOGEMENT_FILE)) {
+        try (FileWriter writer = new FileWriter(logementFile)) {
             gson.toJson(logements, writer);
             System.out.println("Logement reservé avec succès !");
         } catch (IOException e) {
@@ -158,6 +161,9 @@ public class LogementService {
 
     public int recupererDernierId(){
         List<Logement> logements = lireLogements();
+        if(logements.isEmpty()){
+            return -1;
+        }
         return logements.getLast().getId();
     }
 

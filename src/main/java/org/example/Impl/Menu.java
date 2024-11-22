@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Menu {
     static Scanner scanner = UtilitaireScanner.getScanner();
-    private static LogementService logementService = new LogementService();
+    private static LogementService logementService = new LogementService("src/main/resources/logement.json");
     private static VoyageService voyageService = new VoyageService();
 
     public static void afficherChoixDeNavigation(Utilisateur user) {

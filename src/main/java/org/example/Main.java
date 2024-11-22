@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     private static final String USERS_FILE = "src/main/resources/utilisateur.json";
     private static final String USERS_FILE_TEST = "src/main/resources/utilisateurTest.json";
-    private static final String LOGEMENT_FILE = "src/main/resources/logement.json";
+
     private static final String LOGEMENT_FILE_TEST = "src/main/resources/logementTest.json";
     private static final String VOYAGE_FILE = "src/main/resources/voyage.json";
     private static final String VOYAGE_FILE_TEST = "src/main/resources/voyageTest.json";
