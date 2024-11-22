@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class LogementService {
@@ -31,15 +32,8 @@ public class LogementService {
         return List.of(); // Retourne une liste vide en cas d'erreur
     }
 
-    public Logement ajouterLogement(Utilisateur user){
+    public Logement ajouterLogement(Utilisateur user, String localisation, int prix, String type){
         Logement nvLogement = null;
-        System.out.println("== Ajout d'un nouveau logement ==");
-        System.out.println("Entrer la localisation du logement :");
-        String localisation = scanner.nextLine();
-        System.out.println("Entrer le prix du logement à la nuit:");
-        int prix = Integer.parseInt(scanner.nextLine());
-        System.out.println("Entrer le type du logement (maison, appartement):");
-        String type = scanner.nextLine();
         int id = recupererDernierId() + 1;
         nvLogement = new Logement(id, localisation, prix, type, user.getPseudo());
         List<Logement> logements = lireLogements();
@@ -76,10 +70,10 @@ public class LogementService {
         }
         try (FileWriter writer = new FileWriter(LOGEMENT_FILE)) {
             gson.toJson(logements, writer);
-            System.out.println("Logement supprimé avec succès !");
+            System.out.println("Logement reservé avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Erreur lors de la suppression du logement.");
+            System.out.println("Erreur lors de la reservation du logement.");
         }
     }
 
@@ -111,12 +105,12 @@ public class LogementService {
         List<Logement> logements = lireLogements();
 
         for (Logement logement : logements){
-            if(logement.getLoueur().equals(user.getPseudo())) {
+            if(Objects.equals(logement.getLoueur(), user.getPseudo())) {
                 System.out.println("Logement n°" + logement.getId() + " - Localisation : " + logement.getLocalisation() + " - Prix : " + logement.getPrix() + "\n");
             }
         }
-        System.out.println("Pour afficher les détails d'un logement, entrer le numéro de ce dernier.\nTaper 'retour' pour revenir au menu");
         while (true) {
+            System.out.println("Pour afficher les détails d'un logement, entrer le numéro de ce dernier.\nTaper 'retour' pour revenir au menu");
             String choix = scanner.nextLine();
             if (choix.equals("retour")) {
                 Menu.afficherChoixDeNavigation(user);
@@ -131,24 +125,34 @@ public class LogementService {
         }
     }
 
-    public void AfficherDetailsLogement(Utilisateur user, Logement logement){
-        System.out.println("== Logement numéro "+logement.getId()+ " ==");
-        System.out.println("Logement n°"+logement.getId()+" - Localisation : "+ logement.getLocalisation() +" - Prix : "+ logement.getPrix()+" - Type de logement : "+ logement.getType() +" - Propriétaire : "+ logement.getProprietaire() +" - Loueur : "+ logement.getLoueur() +"\n\n");
+    public void AfficherDetailsLogement(Utilisateur user, Logement logement) {
+        System.out.println("== Logement numéro " + logement.getId() + " ==");
+        System.out.println("Logement n°" + logement.getId() + " - Localisation : " + logement.getLocalisation() +
+                " - Prix : " + logement.getPrix() + " - Type de logement : " + logement.getType() +
+                " - Propriétaire : " + logement.getProprietaire() + " - Loueur : " + logement.getLoueur() + "\n");
 
         System.out.println("== Actions possibles vis-à-vis du logement ==");
-        if(logement.getLoueur().isEmpty() && !logement.getProprietaire().equals(user.getPseudo())){
-            System.out.println("- Entrer 'loue' pour reserver le logement");
-        }
-        if(logement.getProprietaire().equals(user.getPseudo())){
+        String choix = "";
+        System.out.println("- Entrer 'retour' pour revenir à la liste des voyages");
+        if (logement.getLoueur() == null && !Objects.equals(logement.getProprietaire(), user.getPseudo())) {
+            System.out.println("- Entrer 'loue' pour réserver le logement");
+        }else if(Objects.equals(logement.getProprietaire(), user.getPseudo())){
             System.out.println("- Entrer 'supprimer' pour supprimer le logement");
         }
-        String choix = scanner.nextLine();
-        if(choix.equals("loue")&&logement.getLoueur().isEmpty() && !logement.getProprietaire().equals(user.getPseudo())){
-            louerLogement(user, logement);
-
-        }
-        if(choix.equals("supprimer")&&logement.getProprietaire().equals(user.getPseudo())){
-            supprimerLogement(logement);
+        while (true) {
+            choix = scanner.nextLine();
+            if (choix.equals("loue")){
+                louerLogement(user, logement);
+                break;
+            } else if(choix.equals("supprimer")){
+                supprimerLogement(logement);
+                break;
+            } else if(choix.equals("retour")){
+                afficherLogement(user);
+                break;
+            }else{
+                System.out.println("Entrée non valide.");
+            }
         }
     }
 

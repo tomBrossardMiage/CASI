@@ -16,7 +16,7 @@ public class Logement {
         this.prix = prix;
         this.type = type;
         this.proprietaire = proprietaire;
-        this.loueur = "empty";
+        this.loueur = null;
     }
 
     public String getLocalisation() {

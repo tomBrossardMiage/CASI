@@ -3,12 +3,15 @@ package org.example.Impl;
 import org.example.UtilitaireScanner;
 import org.example.models.Utilisateur;
 import org.example.services.LogementService;
+import org.example.services.VoyageService;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
     static Scanner scanner = UtilitaireScanner.getScanner();
     private static LogementService logementService = new LogementService();
+    private static VoyageService voyageService = new VoyageService();
 
     public static void afficherChoixDeNavigation(Utilisateur user) {
         System.out.println("== MENU ==");
@@ -22,7 +25,7 @@ public class Menu {
             if (choix.equals("1")) {
                 logementService.afficherLogement(user);
             } else if (choix.equals("2")) {
-                //afficherVoyages
+                voyageService.afficherVoyage(user);
             } else if (choix.equals("3")) {
                 System.out.println("== Mes reservations ==");
                 System.out.println("Choisir entre 1 ou 2");
@@ -34,17 +37,25 @@ public class Menu {
                     logementService.afficherLogementLoue(user);
                 } else if (choix2.equals("2")) {
                     System.out.println("Entre ton pseudo");
-                    //afficher les voyage pour lequels le pseudo est identique à la personne qui possède le voyage
+                    voyageService.afficherVoyageReserve(user);
                 }
-                afficherChoixDeNavigation(user);
+                //afficherChoixDeNavigation(user);
                 break;
             } else if (choix.equals("4")) {
-                logementService.ajouterLogement(user);
+                System.out.println("== Ajout d'un nouveau logement ==");
+                System.out.println("Entrer la localisation du logement :");
+                String localisation = scanner.nextLine();
+                System.out.println("Entrer le prix du logement à la nuit:");
+                int prix = Integer.parseInt(scanner.nextLine());
+                System.out.println("Entrer le type du logement (maison, appartement):");
+                String type = scanner.nextLine();
+                System.out.println("Taper 'retour' pour annuler l'ajout et revenir au menu ou 'ok' pour valider l'ajout");
+                String confirmation = scanner.nextLine();
+                if(Objects.equals(confirmation, "ok")){
+                    logementService.ajouterLogement(user, localisation, prix, type);
+                }
                 afficherChoixDeNavigation(user);
             } else if (choix.equals("5")) {
-
-                break;
-            } else if (choix.equals("exit")) {
                 System.out.println("Merci d'avoir utilisé l'application. Au revoir!");
                 break;
             } else {
