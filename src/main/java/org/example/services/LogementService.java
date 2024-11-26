@@ -73,7 +73,7 @@ public class LogementService {
         }
         try (FileWriter writer = new FileWriter(logementFile)) {
             gson.toJson(logements, writer);
-            System.out.println("Logement reservé avec succès !");
+            System.out.println("Paiement pris en compte et Logement reservé avec succès !");
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Erreur lors de la reservation du logement.");
