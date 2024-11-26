@@ -9,9 +9,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
+    private static final String VOYAGE_FILE = "src/main/resources/voyage.json";
+    private static final String LOGEMENT_FILE = "src/main/resources/logement.json";
     static Scanner scanner = UtilitaireScanner.getScanner();
-    private static LogementService logementService = new LogementService("src/main/resources/logement.json");
-    private static VoyageService voyageService = new VoyageService();
+    private static LogementService logementService = new LogementService(LOGEMENT_FILE);
+    private static VoyageService voyageService = new VoyageService(VOYAGE_FILE);
 
     public static void afficherChoixDeNavigation(Utilisateur user) {
         System.out.println("== MENU ==");

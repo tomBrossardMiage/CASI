@@ -16,13 +16,16 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class VoyageService {
-    private static final String VOYAGE_FILE = "src/main/resources/voyage.json";
     private static Scanner scanner = UtilitaireScanner.getScanner();
 
+    private String voyageFile;
 
+    public VoyageService(String voyageFile){
+        this.voyageFile = voyageFile;
+    }
     private Gson gson = new Gson();
     public List<Voyage> lireVoyage() {
-        try (FileReader reader = new FileReader(VOYAGE_FILE)) {
+        try (FileReader reader = new FileReader(voyageFile)) {
             Type VoyageListType = new TypeToken<List<Voyage>>(){}.getType();
             return gson.fromJson(reader, VoyageListType);
         } catch (Exception e) {
@@ -38,7 +41,7 @@ public class VoyageService {
                 voyage.setLocataire(user.getPseudo());
             }
         }
-        try (FileWriter writer = new FileWriter(VOYAGE_FILE)) {
+        try (FileWriter writer = new FileWriter(voyageFile)) {
             gson.toJson(voyages, writer);
             System.out.println("Logement reservé avec succès !");
         } catch (IOException e) {

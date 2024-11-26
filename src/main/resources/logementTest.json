@@ -1,1 +1,1 @@
-[{"id":0,"localisation":"localisationtest","prix":1000,"type":"maisontest","proprietaire":"usertest"},{"id":2,"localisation":"Marseille","prix":900,"type":"Studio","proprietaire":"usertest"}]
+[{"id":0,"localisation":"localisationtest","prix":1000,"type":"maisontest","proprietaire":"usertest"},{"id":2,"localisation":"Lyon","prix":1200,"type":"Maison","proprietaire":"usertestProprietaire","loueur":"loueurTest"}]
