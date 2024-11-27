@@ -83,7 +83,9 @@ public class LogementService {
     public void afficherLogement(Utilisateur user){
         System.out.println("== Liste des logements ==\n");
         List<Logement> logements = lireLogements();
-
+        if(logements.isEmpty()){
+            System.out.println("Aucun logement disponible");
+        }
         for (Logement logement : logements){
             System.out.println("Logement n°" + logement.getId()+" - Localisation : "+ logement.getLocalisation() +" - Prix : "+ logement.getPrix()+"\n");
         }

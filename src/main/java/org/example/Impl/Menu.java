@@ -35,10 +35,8 @@ public class Menu {
                 System.out.println("2 - Mes voyages réservés");
                 String choix2 = scanner.nextLine();
                 if(choix2.equals("1")){
-                    System.out.println("Entre ton pseudo");
                     logementService.afficherLogementLoue(user);
                 } else if (choix2.equals("2")) {
-                    System.out.println("Entre ton pseudo");
                     voyageService.afficherVoyageReserve(user);
                 }
                 //afficherChoixDeNavigation(user);

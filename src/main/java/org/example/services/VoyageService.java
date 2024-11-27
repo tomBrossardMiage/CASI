@@ -53,7 +53,9 @@ public class VoyageService {
     public void afficherVoyage(Utilisateur user){
         System.out.println("== Liste des logements ==\n");
         List<Voyage> voyages = lireVoyage();
-
+        if(voyages.isEmpty()){
+            System.out.println("Aucun voyage disponible");
+        }
         for (Voyage voyage : voyages){
             System.out.println("Voyage n°" + voyage.getId()+" - Localisation : "+ voyage.getLocalisation() +" - Prix : "+ voyage.getPrix()+"\n");
         }
