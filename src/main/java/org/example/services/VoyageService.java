@@ -24,6 +24,7 @@ public class VoyageService {
         this.voyageFile = voyageFile;
     }
     private Gson gson = new Gson();
+    
     public List<Voyage> lireVoyage() {
         try (FileReader reader = new FileReader(voyageFile)) {
             Type VoyageListType = new TypeToken<List<Voyage>>(){}.getType();
